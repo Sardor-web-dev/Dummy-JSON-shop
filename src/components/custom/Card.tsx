@@ -28,12 +28,12 @@ const CardProduct = () => {
   // }, [])
 
   useEffect(() => {
-    axios.get("https://dummyjson.com/products?limit=10").then((response) => {
-      setProducts(response.data.products);
+    axios.get(import.meta.env.VITE_PUBLIC_API + '/products').then((res) => {
+      console.log(res.data);
+      setProducts(res.data.products);
     });
   }, []);
   return (
-    <>
     <div className="grid grid-cols-4 w-full bg-gray-600 gap-4 p-5">
       {
         products.length > 0 ? 
@@ -57,7 +57,6 @@ const CardProduct = () => {
         )) : <p>Loading...</p>
       }
     </div>
-    </>
   )
 };
 
