@@ -1,14 +1,5 @@
+import { Product } from "@/types";
 import { createContext, useState, useEffect, ReactNode } from "react";
-
-const API_URL = "https://dummyjson.com/products";
-
-interface Product {
-  id: number;
-  title: string;
-  description: string;
-  price: number;
-  thumbnail: string;
-}
 
 interface ProductContextType {
   products: Product[];
@@ -27,7 +18,7 @@ export const ProductProvider = ({ children }: { children: ReactNode }) => {
   const fetchProducts = async () => {
     setLoading(true);
     try {
-      const response = await fetch(API_URL);
+      const response = await fetch(import.meta.env.VITE_PUBLIC_API + "/products");
       const data = await response.json();
       setProducts(data.products);
     } catch (error) {
