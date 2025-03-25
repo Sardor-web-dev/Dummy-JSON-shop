@@ -8,6 +8,7 @@ interface ProductContextType {
   refreshProducts: () => void;
 }
 
+
 export const ProductContext = createContext<ProductContextType | undefined>(undefined);
 
 export const ProductProvider = ({ children }: { children: ReactNode }) => {
