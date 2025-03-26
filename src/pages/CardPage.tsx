@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Product } from "@/types";
+import axios from "axios";
 
 const ProductDetails = () => {
   const { id } = useParams<{ id: string }>();
@@ -12,9 +13,9 @@ const ProductDetails = () => {
     const fetchProduct = async () => {
       setLoading(true);
       try {
-        const response = await fetch(`https://dummyjson.com/products/${id}`);
-        const data = await response.json();
-        setProduct(data);
+         await axios
+          .get(`https://dummyjson.com/products/${id}`)
+          .then((res) => setProduct(res.data));
       } catch (error) {
         console.error("Ошибка загрузки товара:", error);
       } finally {
